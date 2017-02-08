@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Tweet Stream </title>
+		<link rel='stylesheet' href='../public/style.css' type='text/css'/>
+    	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	</head>
+	<body>
+		<h3>Stream </h3>
+	    <ul id="messages"></ul>
+  </body>
+<script>
+$(document).ready(function(){
+	var socket = io.connect('/');
+	socket.on('chatMessage', function( query, msg){
+		var color = 'green';
+  		$('#messages').append('<li><b style="color:' + color + '">'+query+'</b>: ' + msg + '</li>');
+    });
+});
+</script>
+</html>
