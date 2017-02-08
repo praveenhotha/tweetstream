@@ -12,10 +12,10 @@ server.register([require('inert'), require('vision')], function(err){
 var io = require('socket.io')(server.listener);
 var Twit = require('twit');
 var T = new Twit({
-	consumer_key:         'BPfiqsk8rHVDyDA0iU9244Hc2',
-  	consumer_secret:      'LxGZU88NQy4nchGoh6KVOlwbaMUJO2WuYguxaQLcQM8PzEpKuC',
-  	access_token:         '33171471-4vP6yiSCq9OYky4h5JPDO7Z6CrA4nd0C4ggqdVCqx',
-  	access_token_secret:  '8RXtMKyeDtYW2318BUctTMcaRllEdE3iddNe2YzEioPqt',
+	consumer_key:         'aBPfiqsk8rHVDyDA0iU9244Hc2',
+  	consumer_secret:      'aLxGZU88NQy4nchGoh6KVOlwbaMUJO2WuYguxaQLcQM8PzEpKuC',
+  	access_token:         'a33171471-4vP6yiSCq9OYky4h5JPDO7Z6CrA4nd0C4ggqdVCqx',
+  	access_token_secret:  '8asRXtMKyeDtYW2318BUctTMcaRllEdE3iddNe2YzEioPqt',
   	timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
 });
 
