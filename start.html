@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <script>
+    	function submitForm(){
+    		var string = document.getElementById('textinput').value;	
+    		document.location.href ="/tweet/"+string;
+    	}
+    	
+    </script>
+    </head>
+    <body>
+<form class="form-horizontal" method="get" >
+<fieldset>
+
+<!-- Form Name -->
+<legend>Tweet Stream</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Text Input</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+  <span class="help-block"></span>  
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
+  <div class="col-md-4">
+    <input type="button" value="Submit" id="singlebutton" name="singlebutton" onclick="submitForm()" class="btn btn-primary">
+  </div>
+</div>
+
+</fieldset>
+</form>
+</body>
+</html>

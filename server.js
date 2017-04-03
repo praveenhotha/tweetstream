@@ -8,24 +8,49 @@ server.register([require('inert'), require('vision')], function(err){
 	if(err) console.log(err);
 });
 
+server.views({
+	engines:{
+		html: require('handlebars')
+	},
+	path: './'
+});
+
 // socket io
 var io = require('socket.io')(server.listener);
 var Twit = require('twit');
 var T = new Twit({
-	consumer_key:         'aBPfiqsk8rHVDyDA0iU9244Hc2',
-  	consumer_secret:      'aLxGZU88NQy4nchGoh6KVOlwbaMUJO2WuYguxaQLcQM8PzEpKuC',
-  	access_token:         'a33171471-4vP6yiSCq9OYky4h5JPDO7Z6CrA4nd0C4ggqdVCqx',
-  	access_token_secret:  '8asRXtMKyeDtYW2318BUctTMcaRllEdE3iddNe2YzEioPqt',
+	consumer_key:         'BPfiqsk8rHVDyDA0iU9244Hc2',
+  	consumer_secret:      'LxGZU88NQy4nchGoh6KVOlwbaMUJO2WuYguxaQLcQM8PzEpKuC',
+  	access_token:         '33171471-4vP6yiSCq9OYky4h5JPDO7Z6CrA4nd0C4ggqdVCqx',
+  	access_token_secret:  '8RXtMKyeDtYW2318BUctTMcaRllEdE3iddNe2YzEioPqt',
   	timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
 });
 
+server.route({
+	path: '/',
+	method: 'GET',
+	handler: function(request, reply){
+		reply.file('start.html');
+	}
+});
+
+server.route({
+	path: '/assets/{path*}',
+	method: 'GET',
+	handler: {
+		directory: {
+			path: './public',
+			listing: false
+		}
+	}
+})
 
 server.route({
 	path: '/tweet/{query}',
 	method: 'GET',
 	handler: function(request, reply){
 		getTweet(request.params.query);
-		reply.file('index.html');
+		reply.view('index',{query: request.params.query});
 	}
 });
 
@@ -35,7 +60,7 @@ function getTweet(query){
 
 	stream.on('tweet', function(tweet){
 		console.log(tweet.text);
-		io.sockets.emit('chatMessage',query, tweet.text);
+		io.sockets.emit(''+query+'',query, tweet.text);
 	})
 	return;
 }
